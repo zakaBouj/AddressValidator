@@ -1,4 +1,10 @@
-public interface IAzureMapsService
+namespace AddressValidator.Console.Services
 {
-    Task<AddressSearchResponse> SearchAddressAsync(string address);
+    using AddressValidator.Console.Models;
+    
+    public interface IAzureMapsService
+    {
+        Task<AddressSearchResponse> SearchAddressAsync(string address);
+    }
 }
+    
