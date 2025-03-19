@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "+ZHD0FcsnwY=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\zb200\\Documents\\GitHub\\AddressValidator\\AddressValidator.Console\\AddressValidator.Console.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\zb200\\.nuget\\packages\\spectre.console\\0.49.1\\spectre.console.0.49.1.nupkg.sha512"
+  ],
+  "logs": []
+}
