@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("AddressValidator.Console")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+62c9cf9294c2c498a3620fdcf6bf3e7a45ca8f4c")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+cf951e1043d469821bd7f5ad7ec0cef84f958230")]
 [assembly: System.Reflection.AssemblyProductAttribute("AddressValidator.Console")]
 [assembly: System.Reflection.AssemblyTitleAttribute("AddressValidator.Console")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
