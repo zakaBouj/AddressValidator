@@ -69,9 +69,8 @@ namespace AddressValidator.Test
             result.IsValid.Should().BeTrue();
             result.ConfidencePercentage.Should().BeGreaterOrEqualTo(80);
             result.FreeformAddress.Should().NotBeNull();
-            result.FreeformAddress.Should().NotBeNull();
             result.FreeformAddress!.Should().Contain("123 Main St");
-            result.FreeformAddress.Should().Contain("Redmond");
+            result.FreeformAddress!.Should().Contain("Redmond");
             result.Position.Should().NotBeNull();
             result.Position.Lat.Should().BeApproximately(47.6801, 0.001);
             result.Position.Lon.Should().BeApproximately(-122.1206, 0.001);
