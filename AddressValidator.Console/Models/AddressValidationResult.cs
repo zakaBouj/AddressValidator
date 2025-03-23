@@ -4,8 +4,8 @@ namespace AddressValidator.Console.Models
     {
         public bool IsValid { get; set; }
 
-        public int ConfidencePercentage { get; set; }
-        public string? FormattedAddress { get; set; }
+        public double ConfidencePercentage { get; set; }
+        public string? FreeformAddress { get; set; }
         public string? ValidationMessage { get; set; }
 
         public AddressInput? OriginalInput { get; set; }

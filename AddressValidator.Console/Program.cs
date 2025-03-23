@@ -1,4 +1,5 @@
 ﻿using AddressValidator.Console.Config;
+using AddressValidator.Console.Models;
 using AddressValidator.Console.Services;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -16,31 +17,82 @@ var azureMapsConfig = new AzureMapsConfig
 services.AddSingleton(azureMapsConfig);
 services.AddHttpClient<IAzureMapsService, AzureMapsService>();
 services.AddSingleton<IAzureMapsTokenService, AzureMapsTokenService>();
+services.AddSingleton<IAddressValidationService, AddressValidationService>(sp =>
+    new AddressValidationService(
+        sp.GetRequiredService<IAzureMapsService>(),
+        0.8 // 80% confidence threshold
+    )
+);
 
 // Build service provider
 var serviceProvider = services.BuildServiceProvider();
 
 // Get service instance
-var azureMapsService = serviceProvider.GetRequiredService<IAzureMapsService>();
+var validationService = serviceProvider.GetRequiredService<IAddressValidationService>();
 
-// Example usage
-Console.WriteLine("Enter an address to search:");
-var address = Console.ReadLine();
+// Address input interface
+Console.WriteLine("===== Address Validator =====");
+Console.WriteLine("Enter address details (* indicates required field)");
 
-if (!string.IsNullOrWhiteSpace(address))
+Console.Write("Address Line 1*: ");
+var addressLine1 = Console.ReadLine() ?? string.Empty;
+
+Console.Write("Address Line 2: ");
+var addressLine2 = Console.ReadLine();
+
+Console.Write("Address Line 3: ");
+var addressLine3 = Console.ReadLine();
+
+Console.Write("Postal Code/ZIP*: ");
+var postalCode = Console.ReadLine() ?? string.Empty;
+
+Console.Write("City*: ");
+var city = Console.ReadLine() ?? string.Empty;
+
+Console.Write("Country*: ");
+var country = Console.ReadLine() ?? string.Empty;
+
+// Create address input model
+var addressInput = new AddressInput
+{
+    AddressLine1 = addressLine1,
+    AddressLine2 = addressLine2,
+    AddressLine3 = addressLine3,
+    PostalCode = postalCode,
+    City = city,
+    Country = country
+};
+
+// Basic validation
+if (string.IsNullOrWhiteSpace(addressLine1) ||
+    string.IsNullOrWhiteSpace(postalCode) ||
+    string.IsNullOrWhiteSpace(city) ||
+    string.IsNullOrWhiteSpace(country))
+{
+    Console.WriteLine("Error: Required fields cannot be empty.");
+}
+else
 {
     try
     {
-        var result = await azureMapsService.SearchAddressAsync(address);
+        Console.WriteLine("\nValidating address...");
+        var result = await validationService.ValidateAddressAsync(addressInput);
         
-        Console.WriteLine($"Found {result.Results.Length} results");
-        foreach (var item in result.Results)
+        Console.WriteLine("\n===== Validation Results =====");
+        Console.WriteLine($"Valid: {(result.IsValid ? "Yes" : "No")}");
+        Console.WriteLine($"Confidence: {result.ConfidencePercentage}%");
+        
+        if (result.FreeformAddress != null)
         {
-            Console.WriteLine($"Address: {item.Address?.FreeformAddress}");
-            Console.WriteLine($"Confidence: {item.Score}");
-            Console.WriteLine($"Position: {item.Position.Lat}, {item.Position.Lon}");
-            Console.WriteLine();
+            Console.WriteLine($"Formatted Address: {result.FreeformAddress}");
         }
+        
+        if (result.Position != null)
+        {
+            Console.WriteLine($"Coordinates: {result.Position.Lat}, {result.Position.Lon}");
+        }
+        
+        Console.WriteLine($"Message: {result.ValidationMessage}");
     }
     catch (Exception ex)
     {
@@ -48,5 +100,5 @@ if (!string.IsNullOrWhiteSpace(address))
     }
 }
 
-Console.WriteLine("Press any key to exit...");
+Console.WriteLine("\nPress any key to exit...");
 Console.ReadKey();

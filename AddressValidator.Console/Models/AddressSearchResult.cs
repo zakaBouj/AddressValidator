@@ -30,10 +30,10 @@ namespace AddressValidator.Console.Models
         public string? ExtendedPostalCode { get; set; }
         
         // These fields are typically always present for an address
-        public string CountryCode { get; set; } = string.Empty;
-        public string Country { get; set; } = string.Empty;
+        public string? CountryCode { get; set; } = string.Empty;
+        public string? Country { get; set; } = string.Empty;
         public string? CountryCodeISO3 { get; set; }
-        public string FreeformAddress { get; set; } = string.Empty;
+        public string? FreeformAddress { get; set; } = string.Empty;
         public string? CountrySubdivisionName { get; set; }
     }
 
