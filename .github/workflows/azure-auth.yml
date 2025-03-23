@@ -9,9 +9,8 @@ on:
 # - AZURE_CLIENT_ID: Your Azure app registration client ID
 # - AZURE_TENANT_ID: Your Azure tenant ID
 # - AZURE_SUBSCRIPTION_ID: Your Azure subscription ID
-# - AZURE_CLIENT_SECRET: The client secret for your service principal
 
-# Add permissions to the workflow
+# Add permissions for OIDC authentication
 permissions:
   id-token: write
   contents: read
@@ -34,7 +33,6 @@ jobs:
         client-id: ${{ secrets.AZURE_CLIENT_ID }}
         tenant-id: ${{ secrets.AZURE_TENANT_ID }}
         subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-        client-secret: ${{ secrets.AZURE_CLIENT_SECRET }}
     
     - name: Create Test Settings
       run: |
