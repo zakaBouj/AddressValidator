@@ -42,14 +42,10 @@ dotnet test --filter "Category!=AzureIntegration"
 
 This project uses GitHub Actions for continuous integration and deployment:
 
-1. **Build and Test**: Automatically runs on every push and pull request
-   - Builds the solution
-   - Runs all unit and integration tests
-   - Reports test results
-
-2. **Azure Authentication**: Scheduled workflow to verify Azure integration
-   - Tests Azure Maps token acquisition with Entra ID
-   - Can be manually triggered when needed
+**Build and Test**: Automatically runs on every push and pull request
+- Builds the solution
+- Runs all unit and integration tests
+- Reports test results
 
 ## Development Progress
 
