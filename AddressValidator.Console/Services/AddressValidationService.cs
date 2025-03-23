@@ -47,7 +47,15 @@ namespace AddressValidator.Console.Services
                     return result;
                 }
 
+                // Find the result with the highest confidence score
                 var topMatch = searchResponse.Results[0];
+                foreach (var currentResult in searchResponse.Results)
+                {
+                    if (currentResult.Score > topMatch.Score)
+                    {
+                        topMatch = currentResult;
+                    }
+                }
 
                 result.ConfidencePercentage = Math.Round(topMatch.Score*100, 2);
 
