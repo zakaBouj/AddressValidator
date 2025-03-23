@@ -5,12 +5,12 @@ namespace AddressValidator.Console.Services
     public class AddressValidationService : IAddressValidationService
     {
         private readonly IAzureMapsService _azureMapsService;
-        private readonly double _minimumConfidenceThresholdPrecentage;
+        private readonly double _minimumConfidenceThresholdPercentage;
 
         public AddressValidationService(IAzureMapsService azureMapsService, double minimumConfidenceThreshold)
         {
             _azureMapsService = azureMapsService;
-            _minimumConfidenceThresholdPrecentage = minimumConfidenceThreshold * 100;
+            _minimumConfidenceThresholdPercentage = minimumConfidenceThreshold * 100;
         }
 
         public async Task<AddressValidationResult> ValidateAddressAsync(AddressInput address)
@@ -59,7 +59,7 @@ namespace AddressValidator.Console.Services
 
                 result.ConfidencePercentage = Math.Round(topMatch.Score*100, 2);
 
-                result.IsValid = result.ConfidencePercentage >= _minimumConfidenceThresholdPrecentage;
+                result.IsValid = result.ConfidencePercentage >= _minimumConfidenceThresholdPercentage;
 
                 result.MatchedAddress = topMatch.Address;
                 result.FreeformAddress = topMatch.Address?.FreeformAddress;
@@ -71,7 +71,7 @@ namespace AddressValidator.Console.Services
                 }
                 else
                 {
-                    result.ValidationMessage = $"Address found but confidence score of {result.ConfidencePercentage}% is below threshold ({_minimumConfidenceThresholdPrecentage}%).";
+                    result.ValidationMessage = $"Address found but confidence score of {result.ConfidencePercentage}% is below threshold ({_minimumConfidenceThresholdPercentage}%).";
                 }
             }
             catch (AzureMapsServiceException ex)
