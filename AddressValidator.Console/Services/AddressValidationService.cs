@@ -26,6 +26,11 @@ namespace AddressValidator.Console.Services
 
         public async Task<AddressValidationResult> ValidateAddressAsync(string addressString)
         {
+            if (string.IsNullOrWhiteSpace(addressString))
+            {
+                throw new ArgumentException("Address cannot be empty or whitespace", nameof(addressString));
+            }
+            
             var result = new AddressValidationResult
             {
                 IsValid = false,
@@ -67,7 +72,7 @@ namespace AddressValidator.Console.Services
             }
             catch (Exception ex)
             {
-                result.ValidationMessage = $"Unexpected  error: {ex.Message}";
+                result.ValidationMessage = $"Unexpected error: {ex.Message}";
             }
             
             return result;
