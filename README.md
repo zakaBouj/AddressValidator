@@ -11,6 +11,46 @@ The application validates user-entered addresses to determine:
 - Detailed address information from the API
 - Save both the input address and the API response
 
+## Getting Started
+
+### Prerequisites
+- .NET 9.0 SDK
+- Azure account with Maps service and Entra ID set up
+
+### Running the Application
+From the solution directory:
+```bash
+# Run from solution directory, specifying the project
+dotnet run --project AddressValidator.Console/AddressValidator.Console.csproj
+
+# OR navigate to the project directory and run
+cd AddressValidator.Console
+dotnet run
+```
+
+### Running Tests
+```bash
+# Run all tests from solution directory
+dotnet test
+
+# Run tests with filter
+dotnet test --filter "FullyQualifiedName~EdgeCases"
+dotnet test --filter "Category!=AzureIntegration"
+```
+
+## Development Workflow
+
+This project uses GitHub Actions for continuous integration and deployment:
+
+1. **Build and Test**: Automatically runs on every push and pull request
+   - Builds the solution
+   - Runs all unit and integration tests
+   - Reports test results
+
+2. **Azure Authentication**: Scheduled workflow to verify Azure integration
+   - Tests Azure Maps token acquisition with Entra ID
+   - Can be manually triggered when needed
+
 ## Development Progress
 
 - ✅ Created Azure Maps service integration with Entra ID authentication
@@ -18,7 +58,7 @@ The application validates user-entered addresses to determine:
 - ✅ Added custom exception handling
 - ✅ Implemented address validation service with confidence threshold
 - ✅ Enhanced validation to handle multiple potential address matches
-- ✅ Added comprehensive test suite with 21 tests
+- ✅ Added comprehensive test suite with 32 tests
 - ✅ Set up GitHub Actions for CI/CD
 - ⏳ Storage functionality - Planned
 - ⏳ Console UI - Planned
@@ -42,11 +82,15 @@ The application validates user-entered addresses to determine:
   - `IAzureMapsTokenService` / `AzureMapsTokenService`: Handles Entra ID token acquisition
   - `IAddressValidationService` / `AddressValidationService`: Validates addresses using configurable thresholds
   - `AzureMapsServiceException`: Custom exception handling for the service
-- **Tests/**: Comprehensive test suite
-  - Unit tests for individual components
-  - Integration tests for the complete validation flow
-  - Edge case tests for error handling
-  - Tests for multiple address results handling
+- **Tests/**: Comprehensive test suite organized by type
+  - **Models/**: Tests for address input models and validation
+  - **Services/**: Tests for service implementations and mocking
+  - **Integration/**: End-to-end tests of the complete validation flow
+  - **EdgeCases/**: Tests for special scenarios:
+    - Special character handling
+    - International address formats
+    - Non-Latin characters
+    - Error conditions
 - **CI/CD**: GitHub Actions workflows for automated building and testing
 
 ## Project Goals
