@@ -2,7 +2,7 @@ namespace AddressValidator.Console.Config
 {
     public class AzureMapsConfig
     {
-        public string ClientId { get; set; }
-        public string AzureMapsEndpoint { get; set; }
+        public required string ClientId { get; set; }
+        public required string AzureMapsEndpoint { get; set; }
     }
 }
