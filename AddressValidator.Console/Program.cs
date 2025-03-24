@@ -2,7 +2,13 @@
 using AddressValidator.Console.Models;
 using AddressValidator.Console.Repositories;
 using AddressValidator.Console.Services;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+
+// Setup configuration
+var configuration = new ConfigurationBuilder()
+    .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+    .Build();
 
 // Create service collection
 var services = new ServiceCollection();
@@ -10,8 +16,10 @@ var services = new ServiceCollection();
 // Configure Azure Maps settings
 var azureMapsConfig = new AzureMapsConfig
 {
-    ClientId = "bbcef7ee-c081-4417-b87d-c591a9a65953",
-    AzureMapsEndpoint = "https://atlas.microsoft.com/"
+    ClientId = configuration.GetSection("AzureMaps:ClientId").Value
+        ?? throw new InvalidOperationException("Azure Maps Client ID is not configured in appsettings.json"),
+    AzureMapsEndpoint = configuration.GetSection("AzureMaps:Endpoint").Value
+        ?? "https://atlas.microsoft.com/"
 };
 // Register services
 services.AddSingleton(azureMapsConfig);

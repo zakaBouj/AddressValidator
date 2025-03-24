@@ -17,6 +17,28 @@ The application validates user-entered addresses to determine:
 - .NET 9.0 SDK
 - Azure account with Maps service and Entra ID set up
 
+### Configuration
+The application uses appsettings.json for configuration. For security, this file is not included in source control.
+
+1. Copy the example configuration:
+```bash
+cp AddressValidator.Console/appsettings.example.json AddressValidator.Console/appsettings.json
+```
+
+2. Edit appsettings.json with your Azure Maps credentials:
+```json
+{
+  "AzureMaps": {
+    "ClientId": "YOUR_CLIENT_ID_HERE",
+    "Endpoint": "https://atlas.microsoft.com/"
+  }
+}
+```
+
+3. Replace `YOUR_CLIENT_ID_HERE` with your Azure Entra ID client ID.
+
+Note: Never commit appsettings.json to source control as it contains sensitive credentials.
+
 ### Running the Application
 From the solution directory:
 ```bash
