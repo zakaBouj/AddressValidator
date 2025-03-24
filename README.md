@@ -1,23 +1,96 @@
 # AddressValidator
 
+[![.NET](https://img.shields.io/badge/.NET-9.0-512BD4)](https://dotnet.microsoft.com/download) [![Azure Maps](https://img.shields.io/badge/Azure-Maps-0078D4)](https://azure.microsoft.com/en-us/services/azure-maps/)
+
 A console application that validates addresses using Azure Maps with Entra ID authentication and provides detailed validation information.
 
-## Project Overview
+<div align="center">
 
-The application validates user-entered addresses to determine:
+![Address Validator Demo](https://github.com/user-attachments/assets/b15d4011-b620-4c19-a71c-6175383aceb6)
 
-- If the address exists according to Azure Maps
-- The confidence level of the match
-- Detailed address information from the API
-- Save both the input address and the API response
+*Quick demonstration of the address validation workflow*
+</div>
+
+## Table of Contents
+
+- [Overview](#overview)
+- [Features](#features)
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Configuration](#configuration)
+  - [Running the Application](#running-the-application)
+- [Testing](#testing)
+- [Project Structure](#project-structure)
+- [Technologies](#technologies)
+- [Development Process](#development-process)
+- [Project Goals](#project-goals)
+
+## Overview
+
+AddressValidator helps you determine the validity and accuracy of addresses by leveraging the Azure Maps API. The application:
+
+- Verifies if addresses exist according to Azure Maps
+- Provides confidence level metrics for matches
+- Returns detailed address information including coordinates
+- Stores both input addresses and API responses for future reference
+
+## Features
+
+### Address Validation
+
+- Validates addresses against Azure Maps API
+- Configurable confidence threshold (currently 80%)
+- Detailed validation results including coordinates and formatted addresses
+
+### Enhanced User Interface
+
+- Rich, colorful console UI powered by Spectre.Console
+- Intuitive navigation with clear menus and prompts
+- Interactive address form with field validation
+- Address review screen with editable fields
+- **Bold formatting for user input** for better visibility
+- Comprehensive error handling with user-friendly messages
+
+### Storage and History
+
+- Persistent storage of validation results
+- View validation history with chronological ordering
+- Re-validate addresses from history
+- Clear history when needed
+- Sample data included for testing
 
 ## Getting Started
 
 ### Prerequisites
+
 - .NET 9.0 SDK
 - Azure account with Maps service and Entra ID set up
 
+### Configuration
+
+The application uses appsettings.json for configuration. For security, this file is not included in source control.
+
+1. Copy the example configuration:
+```bash
+cp AddressValidator.Console/appsettings.example.json AddressValidator.Console/appsettings.json
+```
+
+2. Edit appsettings.json with your Azure Maps credentials:
+```json
+{
+  "AzureMaps": {
+    "ClientId": "YOUR_CLIENT_ID_HERE",
+    "Endpoint": "https://atlas.microsoft.com/"
+  }
+}
+```
+
+3. Replace `YOUR_CLIENT_ID_HERE` with your Azure Entra ID client ID.
+
+> **Note:** Never commit appsettings.json to source control as it contains sensitive credentials.
+
 ### Running the Application
+
 From the solution directory:
 ```bash
 # Run from solution directory, specifying the project
@@ -28,7 +101,10 @@ cd AddressValidator.Console
 dotnet run
 ```
 
-### Running Tests
+## Testing
+
+The application includes a comprehensive test suite covering all aspects of the system:
+
 ```bash
 # Run all tests from solution directory
 dotnet test
@@ -38,109 +114,72 @@ dotnet test --filter "FullyQualifiedName~EdgeCases"
 dotnet test --filter "Category!=AzureIntegration"
 ```
 
-## Development Workflow
+## Project Structure
+
+The codebase is organized into clean, modular components:
+
+- **Models/**: Data models for the API responses and application
+  - Address input/output structures
+  - Validation results
+  - Search response models
+  
+- **Services/**: Core application logic
+  - Azure Maps API integration
+  - Entra ID authentication
+  - Address validation with confidence thresholds
+  
+- **Repositories/**: Data storage
+  - JSON-based validation history storage
+  
+- **UI/**: User interface components
+  - AddressFormUI: Input form with validation display
+  - ValidationHistoryUI: History viewing and management
+  - ConsoleUIService: Core UI services (spinners, errors)
+  
+- **Tests/**: Comprehensive test coverage
+  - Unit tests (Models, Services, Repositories, UI)
+  - Integration tests
+  - Edge case testing
+
+## Technologies
+
+- **C# / .NET 9.0**: Modern development platform
+- **Azure Maps Search API**: Address validation and geocoding
+- **Entra ID**: Secure authentication
+- **System.Text.Json**: Data serialization
+- **Spectre.Console**: Enhanced terminal UI with colors and formatting
+- **xUnit, Moq, FluentAssertions**: Testing tools
+- **GitHub Actions**: CI/CD automation
+
+## Development Process
 
 This project uses GitHub Actions for continuous integration and deployment:
 
-**Build and Test**: Automatically runs on every push and pull request
-- Builds the solution
-- Runs all unit and integration tests
-- Reports test results
+- Automated build and test on every push and pull request
+- Comprehensive validation before merging changes
+- Test result reporting
 
-## Development Progress
+### Completed Milestones
 
-- ✅ Created Azure Maps service integration with Entra ID authentication
-- ✅ Implemented data models for the API responses
-- ✅ Added custom exception handling
-- ✅ Implemented address validation service with confidence threshold
-- ✅ Enhanced validation to handle multiple potential address matches
-- ✅ Added comprehensive test suite with 42 tests
-- ✅ Set up GitHub Actions for CI/CD
-- ✅ Implemented storage functionality with JSON repository
-- ✅ Added basic console UI with menu system
-
-Next:
-- ⏳ Enhanced Console UI with Spectre.Console - Planned
-- ⏳ Address suggestions for inexact matches - Planned
-
-## Features
-
-### Address Validation
-- Validates addresses against Azure Maps API
-- Configurable confidence threshold (currently 80%)
-- Detailed validation results including coordinates and formatted addresses
-
-### Storage and History
-- Persistent storage of validation results
-- View validation history
-- Re-validate addresses from history
-- Clear history when needed
-- Sample data included for testing
-
-### User Interface
-- Menu-driven console interface
-- Interactive commands for all operations
-- Comprehensive error handling
-
-## Technologies Used
-
-- C# / .NET 9.0
-- Azure Maps Search API with Entra ID authentication
-- System.Text.Json for data serialization
-- xUnit, Moq, and FluentAssertions for testing
-- GitHub Actions for CI/CD
-- Spectre.Console (coming soon for enhanced console UI)
-
-## Project Structure
-
-- **Models/**: Contains data models for the Azure Maps API responses and application models
-  - `AddressInput`: Structured model for address input
-  - `AddressValidationResult`: Model representing validation results
-  - `ValidationRecord`: Record for storing validation history
-  - `AddressSearchResponse`/`AddressSearchResult`: Models for Azure Maps API responses
-- **Services/**: Contains the core services 
-  - `IAzureMapsService` / `AzureMapsService`: Interface and implementation for Azure Maps API communication
-  - `IAzureMapsTokenService` / `AzureMapsTokenService`: Handles Entra ID token acquisition
-  - `IAddressValidationService` / `AddressValidationService`: Validates addresses using configurable thresholds
-  - `AzureMapsServiceException`: Custom exception handling for the service
-- **Repositories/**: Contains storage implementations
-  - `IAddressValidationRepository`: Interface for storing validation results
-  - `JsonAddressValidationRepository`: JSON file-based implementation
-- **Data/**: Contains sample data for the application
-  - `sample-validation-history.json`: Sample address validation records
-- **Tests/**: Comprehensive test suite organized by type
-  - **Models/**: Tests for address input models and validation
-  - **Services/**: Tests for service implementations and mocking
-  - **Repositories/**: Tests for storage implementations
-  - **Integration/**: End-to-end tests including file system operations
-  - **EdgeCases/**: Tests for special scenarios:
-    - Special character handling
-    - International address formats
-    - Non-Latin characters
-    - Error conditions
+- ✅ Azure Maps service integration with Entra ID authentication
+- ✅ Data models and API response handling
+- ✅ Address validation with confidence threshold
+- ✅ Multiple potential address match handling
+- ✅ Comprehensive test suite across all application layers
+- ✅ GitHub Actions CI/CD pipeline
+- ✅ JSON-based storage implementation
+- ✅ Rich console UI with Spectre.Console
+- ✅ Interactive address input form with validation
+- ✅ Validation history management
 
 ## Project Goals
 
-This application aims to:
+AddressValidator aims to provide:
 
-- Validate addresses using the Azure Maps service
-- Determine the confidence level of address matches
-- Store both user input and validation results
-- Provide a simple and intuitive console interface
-- Maintain high code quality with comprehensive tests
+- Reliable address validation using Azure Maps
+- Clear confidence metrics for address matches
+- Simple, persistent storage of validation history
+- Intuitive console interface for all operations
+- High code quality with comprehensive testing
 
 The initial version is a console application, with potential for future expansion into other interfaces.
-
-## Next Steps
-
-Upcoming enhancements for future development:
-
-1. **Enhanced Console UI**: Implement Spectre.Console for a better user experience
-   - Colorful output with better formatting
-   - Interactive menus and paging for history
-   - Progress bars and spinners for operations
-   - Tables for displaying validation results
-
-2. **Address Suggestions**: Provide alternative address suggestions when matches aren't exact
-   - Show multiple potential matches
-   - Allow selection from matches

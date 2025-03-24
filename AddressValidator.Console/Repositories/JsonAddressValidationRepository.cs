@@ -13,8 +13,17 @@ namespace AddressValidator.Console.Repositories
             _jsonFilePath = jsonFilePath;
             _maxHistorySize = maxHistroySize;
 
-            // Esure directory exists
-            Directory.CreateDirectory(Path.GetDirectoryName(jsonFilePath));
+            // Ensure directory exists
+            string? directoryName = Path.GetDirectoryName(jsonFilePath);
+            if (!string.IsNullOrEmpty(directoryName))
+            {
+                Directory.CreateDirectory(directoryName);
+            }
+            else
+            {
+                // Log or handle the case where directory name is null or empty
+                System.Console.WriteLine($"Warning: Unable to determine directory from path '{jsonFilePath}'. File operations may fail.");
+            }
         }
 
         private async Task<List<ValidationRecord>> LoadHistoryAsync()
@@ -48,7 +57,7 @@ namespace AddressValidator.Console.Repositories
                 ValidationResult = validationResult
             };
 
-            // add to beginning of list (most recent first)
+            // Add to beginning of list (most recent first)
             history.Insert(0, record);
 
             // Trim history to max size

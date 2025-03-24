@@ -73,6 +73,7 @@ ServiceFabricBackup/
 *.rptproj.bak
 
 ## Service-specific files
+appsettings.json
 appsettings.Development.json
 appsettings.Production.json
 appsettings.local.json
