@@ -11,6 +11,14 @@ The application validates user-entered addresses to determine:
 - Detailed address information from the API
 - Save both the input address and the API response
 
+<!-- Demo GIF placeholder - will be visible when uncommenting -->
+<!--
+## Demo
+
+![Address Validator Demo](demo/address-validator-demo.gif)
+*Quick demonstration of the address validation workflow*
+-->
+
 ## Getting Started
 
 ### Prerequisites
@@ -80,10 +88,9 @@ This project uses GitHub Actions for continuous integration and deployment:
 - ✅ Set up GitHub Actions for CI/CD
 - ✅ Implemented storage functionality with JSON repository
 - ✅ Added basic console UI with menu system
-
-Next:
-- ⏳ Enhanced Console UI with Spectre.Console - Planned
-- ⏳ Address suggestions for inexact matches - Planned
+- ✅ Enhanced Console UI with Spectre.Console
+- ✅ Implemented improved address input form with review capabilities
+- ✅ Added validation history view and management
 
 ## Features
 
@@ -92,26 +99,29 @@ Next:
 - Configurable confidence threshold (currently 80%)
 - Detailed validation results including coordinates and formatted addresses
 
+### Enhanced User Interface
+- Rich, colorful console UI powered by Spectre.Console
+- Intuitive navigation with clear menus and prompts
+- Interactive address form with field validation
+- Address review screen with editable fields
+- Bold formatting for user input for better visibility
+- Comprehensive error handling with user-friendly messages
+
 ### Storage and History
 - Persistent storage of validation results
-- View validation history
+- View validation history with chronological ordering
 - Re-validate addresses from history
 - Clear history when needed
 - Sample data included for testing
-
-### User Interface
-- Menu-driven console interface
-- Interactive commands for all operations
-- Comprehensive error handling
 
 ## Technologies Used
 
 - C# / .NET 9.0
 - Azure Maps Search API with Entra ID authentication
 - System.Text.Json for data serialization
+- Spectre.Console for enhanced terminal UI
 - xUnit, Moq, and FluentAssertions for testing
 - GitHub Actions for CI/CD
-- Spectre.Console (coming soon for enhanced console UI)
 
 ## Project Structure
 
@@ -128,6 +138,10 @@ Next:
 - **Repositories/**: Contains storage implementations
   - `IAddressValidationRepository`: Interface for storing validation results
   - `JsonAddressValidationRepository`: JSON file-based implementation
+- **UI/**: Contains user interface implementations
+  - `AddressFormUI`: Handles address input form and validation results display
+  - `ValidationHistoryUI`: Manages display and interaction with validation history
+  - `ConsoleUIService`: Core UI service with spinners and loading indicators
 - **Data/**: Contains sample data for the application
   - `sample-validation-history.json`: Sample address validation records
 - **Tests/**: Comprehensive test suite organized by type
@@ -147,22 +161,8 @@ This application aims to:
 
 - Validate addresses using the Azure Maps service
 - Determine the confidence level of address matches
-- Store both user input and validation results
+- Store both user input and validation results in a simple way
 - Provide a simple and intuitive console interface
 - Maintain high code quality with comprehensive tests
 
 The initial version is a console application, with potential for future expansion into other interfaces.
-
-## Next Steps
-
-Upcoming enhancements for future development:
-
-1. **Enhanced Console UI**: Implement Spectre.Console for a better user experience
-   - Colorful output with better formatting
-   - Interactive menus and paging for history
-   - Progress bars and spinners for operations
-   - Tables for displaying validation results
-
-2. **Address Suggestions**: Provide alternative address suggestions when matches aren't exact
-   - Show multiple potential matches
-   - Allow selection from matches
