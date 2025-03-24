@@ -13,7 +13,7 @@ namespace AddressValidator.Console.Repositories
             _jsonFilePath = jsonFilePath;
             _maxHistorySize = maxHistroySize;
 
-            // Esure directory exists
+            // Ensure directory exists
             Directory.CreateDirectory(Path.GetDirectoryName(jsonFilePath));
         }
 
@@ -48,7 +48,7 @@ namespace AddressValidator.Console.Repositories
                 ValidationResult = validationResult
             };
 
-            // add to beginning of list (most recent first)
+            // Add to beginning of list (most recent first)
             history.Insert(0, record);
 
             // Trim history to max size
