@@ -75,6 +75,10 @@ namespace AddressValidator.Console.UI
         /// </summary>
         public static ValidationRecord? SelectRecordFromHistory(IEnumerable<ValidationRecord> historyRecords)
         {
+            // Add explicit null check at the beginning of the method
+            if (historyRecords == null)
+                throw new ArgumentNullException(nameof(historyRecords));
+                
             var records = historyRecords.ToList();
             
             if (records.Count == 0)

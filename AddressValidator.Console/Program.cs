@@ -99,6 +99,10 @@ while (!exitApplication)
             exitApplication = true;
             uiService.ShowGoodbye();
             break;
+        default:
+            // Show error for invalid selection instead of goodbye message
+            uiService.ShowError("Invalid option. Please try again.");
+            break;
     }
 
     if (!exitApplication)
