@@ -19,6 +19,11 @@ namespace AddressValidator.Console.Repositories
             {
                 Directory.CreateDirectory(directoryName);
             }
+            else
+            {
+                // Log or handle the case where directory name is null or empty
+                System.Console.WriteLine($"Warning: Unable to determine directory from path '{jsonFilePath}'. File operations may fail.");
+            }
         }
 
         private async Task<List<ValidationRecord>> LoadHistoryAsync()

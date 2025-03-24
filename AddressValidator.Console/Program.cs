@@ -156,13 +156,13 @@ async Task ViewValidationHistoryAsync()
     try
     {
         // Get validation history with a loading spinner
-        var history = await uiService.ShowSpinnerAsync(
+        var validationHistory = await uiService.ShowSpinnerAsync(
             "Loading validation history...",
             async () => await repository.GetValidationHistoryAsync()
         );
         
         // Display formatted history using ValidationHistoryUI
-        ValidationHistoryUI.DisplayValidationHistory(history);
+        ValidationHistoryUI.DisplayValidationHistory(validationHistory);
     }
     catch (Exception ex)
     {
@@ -176,13 +176,13 @@ async Task RevalidateFromHistoryAsync()
     try
     {
         // Get validation history with a loading spinner
-        var history = await uiService.ShowSpinnerAsync(
+        var validationHistory = await uiService.ShowSpinnerAsync(
             "Loading validation history...",
             async () => await repository.GetValidationHistoryAsync()
         );
         
         // Let the user select a record to re-validate
-        var selectedRecord = ValidationHistoryUI.SelectRecordFromHistory(history);
+        var selectedRecord = ValidationHistoryUI.SelectRecordFromHistory(validationHistory);
         
         // If the user selected a record, re-validate it
         if (selectedRecord != null)
