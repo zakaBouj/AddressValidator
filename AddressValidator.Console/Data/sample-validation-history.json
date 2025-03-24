@@ -1,0 +1,236 @@
+[
+    {
+      "Id": "4942b8cc-4239-459f-85c4-0d7a6ff8649e",
+      "Timestamp": "2025-03-24T12:12:39.0197544Z",
+      "OriginalQuery": "Willy Brandt Platz, 60388, Frankfurt am Main, DE",
+      "OriginalAddressInput": {
+        "AddressLine1": "Willy Brandt Platz",
+        "AddressLine2": "",
+        "AddressLine3": "",
+        "PostalCode": "60388",
+        "City": "Frankfurt am Main",
+        "Country": "DE"
+      },
+      "ValidationResult": {
+        "IsValid": true,
+        "ConfidencePercentage": 91.02,
+        "FreeformAddress": "Willy-Brandt-Platz, 60311 Frankfurt am Main",
+        "ValidationMessage": "Address is valid",
+        "OriginalInput": {
+          "AddressLine1": "Willy Brandt Platz",
+          "AddressLine2": "",
+          "AddressLine3": "",
+          "PostalCode": "60388",
+          "City": "Frankfurt am Main",
+          "Country": "DE"
+        },
+        "MatchedAddress": {
+          "StreetNumber": null,
+          "StreetName": "Willy-Brandt-Platz",
+          "MunicipalitySubdivision": "Innenstadt",
+          "Municipality": "Frankfurt am Main",
+          "CountrySecondarySubdivision": "Frankfurt am Main",
+          "CountryTertiarySubdivision": null,
+          "CountrySubdivisionCode": "HE",
+          "PostalCode": "60311",
+          "ExtendedPostalCode": null,
+          "CountryCode": "DE",
+          "Country": "Deutschland",
+          "CountryCodeISO3": "DEU",
+          "FreeformAddress": "Willy-Brandt-Platz, 60311 Frankfurt am Main",
+          "CountrySubdivisionName": "Hessen"
+        },
+        "Position": {
+          "Lat": 50.1090627,
+          "Lon": 8.6741302
+        }
+      },
+      "Summary": "[VALID] Willy-Brandt-Platz, 60311 Frankfurt am Main (91,02%)"
+    },
+    {
+      "Id": "d1200151-4565-41cc-8e51-8159e52c4f30",
+      "Timestamp": "2025-03-24T12:10:16.4454572Z",
+      "OriginalQuery": "Smith \u0026 Jones Building, 42 Oak Ave #301, 60601, Chicago, USA",
+      "OriginalAddressInput": {
+        "AddressLine1": "Smith \u0026 Jones Building, 42 Oak Ave #301",
+        "AddressLine2": "",
+        "AddressLine3": "",
+        "PostalCode": "60601",
+        "City": "Chicago",
+        "Country": "USA"
+      },
+      "ValidationResult": {
+        "IsValid": false,
+        "ConfidencePercentage": 28.67,
+        "FreeformAddress": "Oak Avenue, Fort Smith, AR 72916",
+        "ValidationMessage": "Address found but confidence score of 28,67% is below threshold (80%).",
+        "OriginalInput": {
+          "AddressLine1": "Smith \u0026 Jones Building, 42 Oak Ave #301",
+          "AddressLine2": "",
+          "AddressLine3": "",
+          "PostalCode": "60601",
+          "City": "Chicago",
+          "Country": "USA"
+        },
+        "MatchedAddress": {
+          "StreetNumber": null,
+          "StreetName": "Oak Avenue",
+          "MunicipalitySubdivision": null,
+          "Municipality": "Bonanza",
+          "CountrySecondarySubdivision": "Sebastian",
+          "CountryTertiarySubdivision": null,
+          "CountrySubdivisionCode": "AR",
+          "PostalCode": "72916",
+          "ExtendedPostalCode": "72916-3109",
+          "CountryCode": "US",
+          "Country": "United States",
+          "CountryCodeISO3": "USA",
+          "FreeformAddress": "Oak Avenue, Fort Smith, AR 72916",
+          "CountrySubdivisionName": "Arkansas"
+        },
+        "Position": {
+          "Lat": 35.235889,
+          "Lon": -94.427152
+        }
+      },
+      "Summary": "[INVALID] Oak Avenue, Fort Smith, AR 72916 (28,67%)"
+    },
+    {
+      "Id": "0845ab19-97b9-4dc6-a996-e3a51efcc11b",
+      "Timestamp": "2025-03-24T12:09:28.9246161Z",
+      "OriginalQuery": "Nishishinjuku 2-8-1, 160-0023, Tokyo, Japan",
+      "OriginalAddressInput": {
+        "AddressLine1": "Nishishinjuku 2-8-1",
+        "AddressLine2": "",
+        "AddressLine3": "",
+        "PostalCode": "160-0023",
+        "City": "Tokyo",
+        "Country": "Japan"
+      },
+      "ValidationResult": {
+        "IsValid": false,
+        "ConfidencePercentage": 0,
+        "FreeformAddress": null,
+        "ValidationMessage": "No matching address found",
+        "OriginalInput": {
+          "AddressLine1": "Nishishinjuku 2-8-1",
+          "AddressLine2": "",
+          "AddressLine3": "",
+          "PostalCode": "160-0023",
+          "City": "Tokyo",
+          "Country": "Japan"
+        },
+        "MatchedAddress": null,
+        "Position": null
+      },
+      "Summary": "[INVALID] Nishishinjuku 2-8-1, 160-0023, Tokyo, Japan (0%)"
+    },
+    {
+      "Id": "581e06ef-7a6b-4009-8897-9a52dbb0b446",
+      "Timestamp": "2025-03-24T12:08:16.1899232Z",
+      "OriginalQuery": "?????????2-8-1, 160-0023, ??, ??",
+      "OriginalAddressInput": {
+        "AddressLine1": "?????????2-8-1",
+        "AddressLine2": "",
+        "AddressLine3": "",
+        "PostalCode": "160-0023",
+        "City": "??",
+        "Country": "??"
+      },
+      "ValidationResult": {
+        "IsValid": false,
+        "ConfidencePercentage": 0,
+        "FreeformAddress": null,
+        "ValidationMessage": "No matching address found",
+        "OriginalInput": {
+          "AddressLine1": "?????????2-8-1",
+          "AddressLine2": "",
+          "AddressLine3": "",
+          "PostalCode": "160-0023",
+          "City": "??",
+          "Country": "??"
+        },
+        "MatchedAddress": null,
+        "Position": null
+      },
+      "Summary": "[INVALID] ?????????2-8-1, 160-0023, ??, ?? (0%)"
+    },
+    {
+      "Id": "af82d6b3-b336-4102-88fc-e0ca2b3ed9f0",
+      "Timestamp": "2025-03-24T12:07:20.2031897Z",
+      "OriginalQuery": "b\u00F6tge stra\u00DFe, 60388, frankfurt am main, germany",
+      "OriginalAddressInput": {
+        "AddressLine1": "b\u00F6tge stra\u00DFe",
+        "AddressLine2": "",
+        "AddressLine3": "",
+        "PostalCode": "60388",
+        "City": "frankfurt am main",
+        "Country": "germany"
+      },
+      "ValidationResult": {
+        "IsValid": true,
+        "ConfidencePercentage": 87.66,
+        "FreeformAddress": "Gwinnerstra\u00DFe, 60388, 60389 Frankfurt am Main",
+        "ValidationMessage": "Address is valid",
+        "OriginalInput": {
+          "AddressLine1": "b\u00F6tge stra\u00DFe",
+          "AddressLine2": "",
+          "AddressLine3": "",
+          "PostalCode": "60388",
+          "City": "frankfurt am main",
+          "Country": "germany"
+        },
+        "MatchedAddress": {
+          "StreetNumber": null,
+          "StreetName": "Gwinnerstra\u00DFe",
+          "MunicipalitySubdivision": "Seckbach",
+          "Municipality": "Frankfurt am Main",
+          "CountrySecondarySubdivision": "Frankfurt am Main",
+          "CountryTertiarySubdivision": null,
+          "CountrySubdivisionCode": "HE",
+          "PostalCode": "60388, 60389",
+          "ExtendedPostalCode": null,
+          "CountryCode": "DE",
+          "Country": "Deutschland",
+          "CountryCodeISO3": "DEU",
+          "FreeformAddress": "Gwinnerstra\u00DFe, 60388, 60389 Frankfurt am Main",
+          "CountrySubdivisionName": "Hessen"
+        },
+        "Position": {
+          "Lat": 50.1385528,
+          "Lon": 8.7371488
+        }
+      },
+      "Summary": "[VALID] Gwinnerstra\u00DFe, 60388, 60389 Frankfurt am Main (87,66%)"
+    },
+    {
+      "Id": "0a19c828-4110-48bd-9bce-2acfbc7c2a72",
+      "Timestamp": "2025-03-24T12:06:21.8762076Z",
+      "OriginalQuery": "schlechtstrss, 007388, frankfurt, de",
+      "OriginalAddressInput": {
+        "AddressLine1": "schlechtstrss",
+        "AddressLine2": "",
+        "AddressLine3": "",
+        "PostalCode": "007388",
+        "City": "frankfurt",
+        "Country": "de"
+      },
+      "ValidationResult": {
+        "IsValid": false,
+        "ConfidencePercentage": 0,
+        "FreeformAddress": null,
+        "ValidationMessage": "No matching address found",
+        "OriginalInput": {
+          "AddressLine1": "schlechtstrss",
+          "AddressLine2": "",
+          "AddressLine3": "",
+          "PostalCode": "007388",
+          "City": "frankfurt",
+          "Country": "de"
+        },
+        "MatchedAddress": null,
+        "Position": null
+      },
+      "Summary": "[INVALID] schlechtstrss, 007388, frankfurt, de (0%)"
+    }
+  ]

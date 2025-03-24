@@ -13,7 +13,6 @@ var azureMapsConfig = new AzureMapsConfig
     ClientId = "bbcef7ee-c081-4417-b87d-c591a9a65953",
     AzureMapsEndpoint = "https://atlas.microsoft.com/"
 };
-
 // Register services
 services.AddSingleton(azureMapsConfig);
 services.AddHttpClient<IAzureMapsService, AzureMapsService>();
@@ -24,9 +23,32 @@ services.AddSingleton<IAddressValidationService, AddressValidationService>(sp =>
         0.8 // 80% confidence threshold
     )
 );
-services.AddSingleton<IAddressValidationRepository>(sp => 
+
+// Set up repository with sample data if needed
+string dataDirectory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Data");
+string historyFilePath = Path.Combine(dataDirectory, "validation-history.json");
+string sampleFilePath = Path.Combine(Directory.GetCurrentDirectory(), "Data", "sample-validation-history.json");
+
+// Make sure the data directory exists
+Directory.CreateDirectory(dataDirectory);
+
+// If history file doesn't exist and sample file exists, copy the sample file
+if (!File.Exists(historyFilePath) && File.Exists(sampleFilePath))
+{
+    try
+    {
+        File.Copy(sampleFilePath, historyFilePath);
+        Console.WriteLine("Sample data loaded successfully.");
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine($"Note: Could not load sample data: {ex.Message}");
+    }
+}
+
+services.AddSingleton<IAddressValidationRepository>(sp =>
     new JsonAdressValidationRepository(
-        Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Data", "validation-history.json"), 
+        historyFilePath,
         maxHistroySize: 20
     )
 );
