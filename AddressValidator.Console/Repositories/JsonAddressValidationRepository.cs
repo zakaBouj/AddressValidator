@@ -14,7 +14,11 @@ namespace AddressValidator.Console.Repositories
             _maxHistorySize = maxHistroySize;
 
             // Ensure directory exists
-            Directory.CreateDirectory(Path.GetDirectoryName(jsonFilePath));
+            string? directoryName = Path.GetDirectoryName(jsonFilePath);
+            if (!string.IsNullOrEmpty(directoryName))
+            {
+                Directory.CreateDirectory(directoryName);
+            }
         }
 
         private async Task<List<ValidationRecord>> LoadHistoryAsync()
