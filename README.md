@@ -54,15 +54,39 @@ This project uses GitHub Actions for continuous integration and deployment:
 - ✅ Added custom exception handling
 - ✅ Implemented address validation service with confidence threshold
 - ✅ Enhanced validation to handle multiple potential address matches
-- ✅ Added comprehensive test suite with 32 tests
+- ✅ Added comprehensive test suite with 42 tests
 - ✅ Set up GitHub Actions for CI/CD
-- ⏳ Storage functionality - Planned
-- ⏳ Console UI - Planned
+- ✅ Implemented storage functionality with JSON repository
+- ✅ Added basic console UI with menu system
+
+Next:
+- ⏳ Enhanced Console UI with Spectre.Console - Planned
+- ⏳ Address suggestions for inexact matches - Planned
+
+## Features
+
+### Address Validation
+- Validates addresses against Azure Maps API
+- Configurable confidence threshold (currently 80%)
+- Detailed validation results including coordinates and formatted addresses
+
+### Storage and History
+- Persistent storage of validation results
+- View validation history
+- Re-validate addresses from history
+- Clear history when needed
+- Sample data included for testing
+
+### User Interface
+- Menu-driven console interface
+- Interactive commands for all operations
+- Comprehensive error handling
 
 ## Technologies Used
 
 - C# / .NET 9.0
 - Azure Maps Search API with Entra ID authentication
+- System.Text.Json for data serialization
 - xUnit, Moq, and FluentAssertions for testing
 - GitHub Actions for CI/CD
 - Spectre.Console (coming soon for enhanced console UI)
@@ -72,22 +96,28 @@ This project uses GitHub Actions for continuous integration and deployment:
 - **Models/**: Contains data models for the Azure Maps API responses and application models
   - `AddressInput`: Structured model for address input
   - `AddressValidationResult`: Model representing validation results
+  - `ValidationRecord`: Record for storing validation history
   - `AddressSearchResponse`/`AddressSearchResult`: Models for Azure Maps API responses
 - **Services/**: Contains the core services 
   - `IAzureMapsService` / `AzureMapsService`: Interface and implementation for Azure Maps API communication
   - `IAzureMapsTokenService` / `AzureMapsTokenService`: Handles Entra ID token acquisition
   - `IAddressValidationService` / `AddressValidationService`: Validates addresses using configurable thresholds
   - `AzureMapsServiceException`: Custom exception handling for the service
+- **Repositories/**: Contains storage implementations
+  - `IAddressValidationRepository`: Interface for storing validation results
+  - `JsonAddressValidationRepository`: JSON file-based implementation
+- **Data/**: Contains sample data for the application
+  - `sample-validation-history.json`: Sample address validation records
 - **Tests/**: Comprehensive test suite organized by type
   - **Models/**: Tests for address input models and validation
   - **Services/**: Tests for service implementations and mocking
-  - **Integration/**: End-to-end tests of the complete validation flow
+  - **Repositories/**: Tests for storage implementations
+  - **Integration/**: End-to-end tests including file system operations
   - **EdgeCases/**: Tests for special scenarios:
     - Special character handling
     - International address formats
     - Non-Latin characters
     - Error conditions
-- **CI/CD**: GitHub Actions workflows for automated building and testing
 
 ## Project Goals
 
@@ -103,11 +133,14 @@ The initial version is a console application, with potential for future expansio
 
 ## Next Steps
 
-Potential enhancements for future development:
+Upcoming enhancements for future development:
 
-1. **Storage Implementation**: Create a repository to save validation results
-2. **Console UI Enhancement**: Implement Spectre.Console for a better user experience
-3. **Address Suggestions**: Provide alternative address suggestions when matches aren't exact
-4. **Batch Processing**: Add support for validating multiple addresses at once
-5. **Geocoding Features**: Expand functionality to include reverse geocoding
-6. **Web API Version**: Create a REST API version of the service
+1. **Enhanced Console UI**: Implement Spectre.Console for a better user experience
+   - Colorful output with better formatting
+   - Interactive menus and paging for history
+   - Progress bars and spinners for operations
+   - Tables for displaying validation results
+
+2. **Address Suggestions**: Provide alternative address suggestions when matches aren't exact
+   - Show multiple potential matches
+   - Allow selection from matches
