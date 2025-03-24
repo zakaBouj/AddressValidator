@@ -84,7 +84,7 @@ This project uses GitHub Actions for continuous integration and deployment:
 - ✅ Added custom exception handling
 - ✅ Implemented address validation service with confidence threshold
 - ✅ Enhanced validation to handle multiple potential address matches
-- ✅ Added comprehensive test suite with 55 tests
+- ✅ Added comprehensive test suite across all application layers
 - ✅ Set up GitHub Actions for CI/CD
 - ✅ Implemented storage functionality with JSON repository
 - ✅ Added basic console UI with menu system
