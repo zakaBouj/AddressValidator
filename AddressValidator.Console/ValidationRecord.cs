@@ -6,9 +6,9 @@ namespace AddressValidator.Console.Models
         public DateTime Timestamp { get; set; } = DateTime.UtcNow;
         public string OriginalQuery { get; set; } = string.Empty;
         public AddressInput? OriginalAddressInput { get; set; }
-        public AddressValidationResult Result { get; set; } = null!;
+        public AddressValidationResult ValidationResult { get; set; } = null!;
 
         public string Summary => 
-        $"[{(Result.IsValid ? "VALID" : "INVALID")}] {Result.FreeformAddress ?? OriginalQuery} ({Result.ConfidencePercentage}%)";
+        $"[{(ValidationResult.IsValid ? "VALID" : "INVALID")}] {ValidationResult.FreeformAddress ?? OriginalQuery} ({ValidationResult.ConfidencePercentage}%)";
     }
 }
