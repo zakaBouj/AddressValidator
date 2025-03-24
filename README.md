@@ -1,12 +1,12 @@
 # AddressValidator
 
-[![.NET](https://img.shields.io/badge/.NET-9.0-512BD4)](https://dotnet.microsoft.com/download) [![Azure Maps](https://img.shields.io/badge/Azure-Maps-0078D4)](https://azure.microsoft.com/en-us/services/azure-maps/)
+[![.NET](https://img.shields.io/badge/.NET-9.0-512BD4)](https://dotnet.microsoft.com/download) [![Azure Maps](https://img.shields.io/badge/Azure-Maps-0078D4)](https://azure.microsoft.com/en-us/services/azure-maps/) [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
 A console application that validates addresses using Azure Maps with Entra ID authentication and provides detailed validation information.
 
 <div align="center">
 
-![Address Validator Demo](https://github.com/user-attachments/assets/b15d4011-b620-4c19-a71c-6175383aceb6)
+![Address Validator Demo](demo/Address%20Validator%20Demo.gif)
 
 *Quick demonstration of the address validation workflow*
 </div>
@@ -23,6 +23,8 @@ A console application that validates addresses using Azure Maps with Entra ID au
 - [Project Structure](#project-structure)
 - [Technologies](#technologies)
 - [Development Process](#development-process)
+- [Contributing](#contributing)
+- [License](#license)
 - [Project Goals](#project-goals)
 
 ## Overview
@@ -171,6 +173,14 @@ This project uses GitHub Actions for continuous integration and deployment:
 - ✅ Rich console UI with Spectre.Console
 - ✅ Interactive address input form with validation
 - ✅ Validation history management
+
+## Contributing
+
+Contributions are welcome! Please check out our [Contributing Guidelines](CONTRIBUTING.md) for details on how to get started.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## Project Goals
 
