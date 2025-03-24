@@ -11,13 +11,9 @@ The application validates user-entered addresses to determine:
 - Detailed address information from the API
 - Save both the input address and the API response
 
-<!-- Demo GIF placeholder - will be visible when uncommenting -->
-<!--
 ## Demo
-
-![Address Validator Demo](demo/address-validator-demo.gif)
+![Address Validator Demo](https://github.com/user-attachments/assets/b15d4011-b620-4c19-a71c-6175383aceb6)
 *Quick demonstration of the address validation workflow*
--->
 
 ## Getting Started
 
