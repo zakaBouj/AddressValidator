@@ -168,7 +168,9 @@ namespace AddressValidator.Console.UI
         /// <summary>
         /// Display validation results in a styled format
         /// </summary>
-        public static void DisplayValidationResult(AddressValidationResult result)
+        /// <param name="result">The validation result from Azure Maps</param>
+        /// <param name="originalInput">The original address input from the user</param>
+        public static void DisplayValidationResult(AddressValidationResult result, AddressInput? originalInput = null)
         {
             AnsiConsole.Clear();
             
@@ -198,6 +200,40 @@ namespace AddressValidator.Console.UI
             
             // Center the panel in the console
             AnsiConsole.Write(Align.Center(panel));
+            
+            // Display the original user input if available
+            if (originalInput != null)
+            {
+                var inputParts = new List<string>
+                {
+                    $"[blue]Address Line 1:[/] {originalInput.AddressLine1}"
+                };
+                
+                if (!string.IsNullOrWhiteSpace(originalInput.AddressLine2))
+                    inputParts.Add($"[blue]Address Line 2:[/] {originalInput.AddressLine2}");
+                
+                if (!string.IsNullOrWhiteSpace(originalInput.AddressLine3))
+                    inputParts.Add($"[blue]Address Line 3:[/] {originalInput.AddressLine3}");
+                
+                inputParts.Add($"[blue]Postal Code:[/] {originalInput.PostalCode}");
+                inputParts.Add($"[blue]City:[/] {originalInput.City}");
+                inputParts.Add($"[blue]Country:[/] {originalInput.Country}");
+                
+                var userInputContent = string.Join("\n", inputParts);
+                var userInputMarkup = new Markup(userInputContent);
+                
+                var userInputPanel = new Panel(userInputMarkup)
+                {
+                    Border = BoxBorder.Rounded,
+                    Padding = new Padding(2, 1, 2, 1),
+                    BorderStyle = new Style(foreground: Color.Yellow),
+                    Header = new PanelHeader("Your Input"),
+                    Expand = true
+                };
+                
+                AnsiConsole.WriteLine();
+                AnsiConsole.Write(Align.Center(userInputPanel));
+            }
             
             // Display the formatted address if available
             if (!string.IsNullOrEmpty(result.FreeformAddress))

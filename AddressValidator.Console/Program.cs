@@ -137,8 +137,8 @@ async Task ValidateNewAddressAsync()
                 return validationResult;
             });
         
-        // Display results using the enhanced UI
-        AddressFormUI.DisplayValidationResult(result);
+        // Display results using the enhanced UI, including original user input
+        AddressFormUI.DisplayValidationResult(result, addressInput);
     }
     catch (Exception ex)
     {
@@ -217,7 +217,15 @@ async Task RevalidateFromHistoryAsync()
                 });
                 
             // Display the results using the enhanced UI
-            AddressFormUI.DisplayValidationResult(result);
+            // Check if we have original address input to display
+            if (selectedRecord.OriginalAddressInput != null)
+            {
+                AddressFormUI.DisplayValidationResult(result, selectedRecord.OriginalAddressInput);
+            }
+            else
+            {
+                AddressFormUI.DisplayValidationResult(result);
+            }
         }
     }
     catch (Exception ex)
