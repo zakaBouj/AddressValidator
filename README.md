@@ -13,6 +13,7 @@ The application validates user-entered addresses to determine:
 
 ## Demo
 ![Address Validator Demo](https://github.com/user-attachments/assets/b15d4011-b620-4c19-a71c-6175383aceb6)
+
 *Quick demonstration of the address validation workflow*
 
 ## Getting Started
