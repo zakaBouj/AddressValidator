@@ -23,7 +23,6 @@ A console application that validates addresses using Azure Maps with Entra ID au
 - [Project Structure](#project-structure)
 - [Technologies](#technologies)
 - [Development Process](#development-process)
-- [Contributing](#contributing)
 - [License](#license)
 - [Project Goals](#project-goals)
 
@@ -173,10 +172,6 @@ This project uses GitHub Actions for continuous integration and deployment:
 - ✅ Rich console UI with Spectre.Console
 - ✅ Interactive address input form with validation
 - ✅ Validation history management
-
-## Contributing
-
-Contributions are welcome! Please check out our [Contributing Guidelines](CONTRIBUTING.md) for details on how to get started.
 
 ## License
 
