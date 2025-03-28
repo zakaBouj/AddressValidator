@@ -21,6 +21,7 @@ AddressValidator is a .NET console application for address validation using Azur
   - [Running the Application](#running-the-application)
 - [Testing](#testing)
 - [Project Structure](#project-structure)
+- [Architecture](#architecture)
 - [Technologies](#technologies)
 - [Development Process](#development-process)
 - [License](#license)
@@ -141,6 +142,52 @@ The codebase is organized into clean, modular components:
   - Unit tests (Models, Services, Repositories, UI)
   - Integration tests
   - Edge case testing
+
+## Architecture
+
+AddressValidator uses a clean, layered architecture with Azure Maps integration:
+
+```mermaid
+flowchart TD
+    subgraph UI["UI Layer"]
+        A[AddressFormUI] 
+        B[ConsoleUIService]
+        C[ValidationHistoryUI]
+    end
+    
+    subgraph Services["Service Layer"]
+        D[AddressValidationService]
+        E[AzureMapsService]
+        F[AzureMapsTokenService]
+    end
+    
+    subgraph Data["Data Layer"]
+        G[JsonAddressValidationRepository]
+    end
+    
+    subgraph External["External Services"]
+        H[Azure Maps API]
+        I[Entra ID]
+    end
+    
+    Main[Program.cs Entry Point] --> UI
+    Main --> Services
+    Main --> Data
+    
+    A --> B
+    C --> B
+    D --> E
+    E --> F
+    E --> H
+    F --> I
+    D --> G
+```
+
+The application follows clean architecture principles with:
+- UI components built with Spectre.Console for rich terminal experiences
+- Service layer handling address validation logic and API integration
+- Data layer managing validation history persistence
+- External integration with Azure Maps secured via Entra ID
 
 ## Technologies
 
