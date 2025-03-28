@@ -170,6 +170,10 @@ flowchart TD
         I[Entra ID]
     end
     
+    Main[Program.cs Entry Point] --> UI
+    Main --> Services
+    Main --> Data
+    
     A --> B
     C --> B
     D --> E
@@ -177,10 +181,6 @@ flowchart TD
     E --> H
     F --> I
     D --> G
-    
-    Program --> UI
-    Program --> Services
-    Program --> Data
 ```
 
 The application follows clean architecture principles with:
