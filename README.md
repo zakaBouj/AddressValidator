@@ -1,6 +1,11 @@
 # AddressValidator
 
-[![.NET](https://img.shields.io/badge/.NET-9.0-512BD4)](https://dotnet.microsoft.com/download) [![Azure Maps](https://img.shields.io/badge/Azure-Maps-0078D4)](https://azure.microsoft.com/en-us/services/azure-maps/) [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![.NET](https://img.shields.io/badge/.NET-Modern-512BD4?logo=dotnet)](https://dotnet.microsoft.com/download)
+[![C#](https://img.shields.io/badge/C%23-Latest-239120?logo=csharp&logoColor=white)](https://docs.microsoft.com/en-us/dotnet/csharp/)
+[![Azure](https://img.shields.io/badge/Cloud-Azure-0078D4?logo=microsoftazure)](https://azure.microsoft.com/en-us/)
+[![Modular Design](https://img.shields.io/badge/Architecture-Layered%20Design-8A2BE2)](https://learn.microsoft.com/en-us/dotnet/architecture/modern-web-apps-azure/common-web-application-architectures)
+[![TDD](https://img.shields.io/badge/Practice-Test%20Driven%20Development-success?logo=xunit)](https://xunit.net/)
+[![CI/CD](https://img.shields.io/badge/DevOps-CI/CD%20Pipeline-2088FF?logo=githubactions)](https://github.com/features/actions)
 
 AddressValidator is a .NET console application for address validation using Azure Maps and Entra ID authentication. Developed as part of client solutions at Digital David AG, it features a modular architecture with clean separation between UI, service, and data layers. While primarily a demonstration tool, its well-designed components could be adapted for integration into larger systems.
 
